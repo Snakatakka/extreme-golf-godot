@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
 
-const SPEED = 1000.0
-const JUMP_VELOCITY = -800.0
+const SPEED = 150.0
+const JUMP_VELOCITY = -300.0
 var was_on_floor = is_on_floor
 var near_golfball = false
+var can_double_jump = false
+var jumps_available = 2
 
 @onready var coyote: Timer = $Coyote
 @onready var landing_lag: Timer = $LandingLag
@@ -12,11 +14,17 @@ var near_golfball = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	if  is_on_floor():
+		jumps_available = 2
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and (is_on_floor() || !coyote.is_stopped()):
+		jumps_available -= 1
+		can_double_jump = true
+	
+	if Input.is_action_just_pressed("jump") and jumps_available >= 0:
 		velocity.y = JUMP_VELOCITY
 	
 	
@@ -34,14 +42,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-# Player enters golfball's radius
-func _on_golfball_area_entered(area: Area2D) -> void:
-	near_golfball = true
-
-# Bullet Time
-func _on_golfball_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if near_golfball and Input.is_action_just_pressed("putt"):
+# Bullet time
+	if near_golfball:
 		if Engine.time_scale <= 0.1:
 			Engine.time_scale = 1.0
 		else:
 			Engine.time_scale = 0.1
+
+func _on_golfball_area_entered(area: Area2D) -> void:
+	near_golfball = true
