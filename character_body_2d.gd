@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
+const SPEED = 1000.0
+const JUMP_VELOCITY = -800.0
 var was_on_floor = is_on_floor
 var near_golfball = false
 var can_double_jump = false

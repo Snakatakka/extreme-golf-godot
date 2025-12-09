@@ -158,14 +158,12 @@ radius = 300.0
 script = ExtResource("1_7mycd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(18.999998, 0)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-463, 0)
 tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAAAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_272bh")
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-15.000015, 2.9999998)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-649, 74)
 script = ExtResource("2_1bvp3")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
@@ -182,7 +180,6 @@ one_shot = true
 
 [node name="golfball" type="Area2D" parent="."]
 position = Vector2(73.99999, 17.999998)
-scale = Vector2(0.1, 0.1)
 script = ExtResource("2_lquwl")
 
 [node name="golfball_sprite" type="Sprite2D" parent="golfball"]
@@ -192,8 +189,7 @@ texture = ExtResource("3_lquwl")
 shape = SubResource("CircleShape2D_h2yge")
 
 [node name="finish" type="Area2D" parent="."]
-position = Vector2(1235, 60)
-scale = Vector2(0.1, 0.1)
+position = Vector2(747, 60)
 script = ExtResource("5_7mycd")
 
 [node name="finish_sprite" type="Sprite2D" parent="finish"]
