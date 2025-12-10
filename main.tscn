@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://j7jnrum31v3l"]
+[gd_scene load_steps=16 format=4 uid="uid://j7jnrum31v3l"]
 
 [ext_resource type="Script" uid="uid://c3vvg78341nj5" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bd76wygp3gcc2" path="res://images/floor.png" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://c6dvews6slvxp" path="res://assets/scenes/constants/player/character_body_2d.gd" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://w2erxjvj4ntr" path="res://assets/scenes/constants/golfball/golfball.gd" id="2_lquwl"]
 [ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://images/icon.svg" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://ik8pffgj3n3f" path="res://player_collider.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://c0yfumaoh31qi" path="res://assets/scenes/constants/finish/finish.gd" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://c6m7wejrrg623" path="res://golfball_collider.gd" id="6_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("1_h2yge")
@@ -149,11 +151,15 @@ sources/0 = SubResource("TileSetAtlasSource_7mycd")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
 size = Vector2(130, 128)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7mycd"]
+friction = 0.0
+bounce = 0.5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
-radius = 80.0
+radius = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7mycd"]
-radius = 100.0
+radius = 160.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 
@@ -161,21 +167,23 @@ radius = 100.0
 script = ExtResource("1_7mycd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(-463, 0)
-tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAAAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAA=")
+position = Vector2(-463, -6)
+tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAAAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_272bh")
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-649, 74)
+position = Vector2(-384, 168)
+input_pickable = true
 script = ExtResource("2_1bvp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="player"]
+[node name="player_sprite" type="Sprite2D" parent="player"]
 texture = ExtResource("3_lquwl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+[node name="player_collider" type="CollisionShape2D" parent="player"]
 shape = SubResource("RectangleShape2D_5vw27")
+script = ExtResource("5_5vw27")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="camera" type="Camera2D" parent="player"]
 
 [node name="Coyote" type="Timer" parent="player"]
 wait_time = 0.35
@@ -183,11 +191,15 @@ one_shot = true
 
 [node name="golfball" type="RigidBody2D" parent="."]
 position = Vector2(747, 60)
+input_pickable = true
+mass = 0.003
+physics_material_override = SubResource("PhysicsMaterial_7mycd")
 script = ExtResource("2_lquwl")
 
 [node name="golfball_collider" type="CollisionShape2D" parent="golfball"]
 position = Vector2(-673, -42)
 shape = SubResource("CircleShape2D_h2yge")
+script = ExtResource("6_272bh")
 
 [node name="golfball_sprite" type="Sprite2D" parent="golfball"]
 position = Vector2(-673, -42)
@@ -201,7 +213,8 @@ shape = SubResource("CircleShape2D_7mycd")
 debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
 
 [node name="finish" type="Area2D" parent="."]
-position = Vector2(747, 60)
+position = Vector2(752, 54)
+collision_layer = 2
 script = ExtResource("5_7mycd")
 
 [node name="finish_sprite" type="Sprite2D" parent="finish"]
@@ -211,4 +224,6 @@ texture = ExtResource("3_lquwl")
 scale = Vector2(6.5, 6.5)
 shape = SubResource("RectangleShape2D_272bh")
 
-[connection signal="area_entered" from="finish" to="golfball" method="_on_finish_area_entered"]
+[connection signal="area_shape_entered" from="golfball/golfball_detection" to="player" method="_on_golfball_detection_area_shape_entered"]
+[connection signal="area_shape_exited" from="golfball/golfball_detection" to="player" method="_on_golfball_detection_area_shape_exited"]
+[connection signal="area_entered" from="finish" to="golfball/golfball_collider" method="_on_finish_area_entered"]

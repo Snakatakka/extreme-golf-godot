@@ -4,7 +4,10 @@ extends CharacterBody2D
 const SPEED = 1200.0
 const JUMP_VELOCITY = -700.0
 var was_on_floor = is_on_floor
+var puttable = false
 @onready var coyote: Timer = $Coyote
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -26,5 +29,13 @@ func _physics_process(delta: float) -> void:
 		# Coyote Time
 	if was_on_floor && is_on_floor():
 		coyote.start()
-
+	
 	move_and_slide()
+
+func _on_golfball_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	puttable = true
+	Engine.time_scale = 0.25
+
+func _on_golfball_detection_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	puttable = false
+	Engine.time_scale = 1
