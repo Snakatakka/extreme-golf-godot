@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+@warning_ignore("unused_parameter")
 func _on_golfball_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	puttable = true
-	Engine.time_scale = 0.25
 
+@warning_ignore("unused_parameter")
 func _on_golfball_detection_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	puttable = false
-	Engine.time_scale = 1

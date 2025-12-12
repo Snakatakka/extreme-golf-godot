@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://bab28yv5f5uyo"]
+
+[ext_resource type="Script" uid="uid://b215mu2l6shp7" path="res://assets/scenes/ui/main_menu/buttons.gd" id="1_56yfp"]
+[ext_resource type="FontFile" uid="uid://dc8yjysph03vo" path="res://images/vhs-gothic.ttf" id="2_w4mmc"]
+
+[sub_resource type="Theme" id="Theme_56yfp"]
+
+[node name="mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-1327, 80)
+size_flags_vertical = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[node name="buttons" type="Control" parent="."]
+layout_mode = 1
+anchor_left = -0.0052083335
+anchor_right = -0.0052083335
+pivot_offset = Vector2(-894, -58)
+script = ExtResource("1_56yfp")
+metadata/_edit_use_anchors_ = true
+
+[node name="level select" type="Button" parent="buttons"]
+process_priority = 2
+layout_mode = 0
+offset_left = -897.0
+offset_top = -60.0
+offset_right = -330.0
+offset_bottom = 92.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_w4mmc")
+theme_override_font_sizes/font_size = 45
+text = "Level Select"
+metadata/_edit_use_anchors_ = true
+
+[node name="options" type="Button" parent="buttons"]
+process_priority = 2
+layout_mode = 0
+offset_left = -897.0
+offset_top = 140.0
+offset_right = -330.0
+offset_bottom = 292.0
+theme = SubResource("Theme_56yfp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_w4mmc")
+theme_override_font_sizes/font_size = 45
+text = "Options"
+metadata/_edit_use_anchors_ = true
+
+[node name="exit" type="Button" parent="buttons"]
+process_priority = 2
+layout_mode = 0
+offset_left = -897.0
+offset_top = 340.0
+offset_right = -330.0
+offset_bottom = 492.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_w4mmc")
+theme_override_font_sizes/font_size = 45
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="buttons/level select" to="buttons" method="_on_level_select_pressed"]
+[connection signal="pressed" from="buttons/options" to="buttons" method="_on_options_pressed"]
+[connection signal="mouse_entered" from="buttons/exit" to="buttons" method="_on_exit_mouse_entered"]

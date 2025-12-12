@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="extreme golf"
-run/main_scene="uid://j7jnrum31v3l"
+run/main_scene="uid://bab28yv5f5uyo"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://images/icon.svg"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/initial_position_type=0
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 
 [editor_plugins]
 
@@ -49,6 +50,14 @@ putt={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="golfball"
+2d_physics/layer_4="finish"
+2d_physics/layer_5="solid_obstacles"
 
 [rendering]
 
