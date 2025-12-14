@@ -7,9 +7,12 @@
 
 [node name="mainmenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
+anchor_left = -0.73300004
+anchor_top = -0.725
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 844.416
+offset_top = 469.80002
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(-1327, 80)
@@ -37,6 +40,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_w4mmc")
 theme_override_font_sizes/font_size = 45
 text = "Level Select"
+clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="options" type="Button" parent="buttons"]
