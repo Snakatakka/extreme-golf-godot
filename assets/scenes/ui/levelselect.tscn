@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://f13c2a1ojixc"]
+[gd_scene load_steps=3 format=3 uid="uid://f13c2a1ojixc"]
 
+[ext_resource type="Script" uid="uid://g18pbyfneimp" path="res://assets/scenes/ui/levelselect.gd" id="1_gyr0b"]
 [ext_resource type="FontFile" uid="uid://dc8yjysph03vo" path="res://images/vhs-gothic.ttf" id="1_jo6k8"]
 
 [node name="levelselect" type="Control"]
@@ -9,11 +10,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gyr0b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
 
-[node name="level select" type="Button" parent="."]
+[node name="world-one" type="Button" parent="."]
 process_priority = 2
 layout_mode = 1
 anchors_preset = 8
@@ -33,3 +35,5 @@ theme_override_fonts/font = ExtResource("1_jo6k8")
 theme_override_font_sizes/font_size = 45
 text = "Level 1"
 clip_text = true
+
+[connection signal="pressed" from="world-one" to="." method="_on_worldone_pressed"]

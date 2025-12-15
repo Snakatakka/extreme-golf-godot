@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-
-const SPEED = 1200.0
-const JUMP_VELOCITY = -700.0
+var SPEED = 1200.0
+var JUMP_VELOCITY = -700.0
 var was_on_floor = is_on_floor
 var puttable = false
 @onready var coyote: Timer = $Coyote
@@ -10,6 +9,7 @@ var puttable = false
 
 
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -30,12 +30,14 @@ func _physics_process(delta: float) -> void:
 	if was_on_floor && is_on_floor():
 		coyote.start()
 	
+	if global.timescale == 1:
+		SPEED = 1200
+		JUMP_VELOCITY = -700
+	elif global.timescale >= 1:
+		SPEED = SPEED * global.timescale
+		JUMP_VELOCITY = JUMP_VELOCITY * global.timescale
+	
 	move_and_slide()
 
-@warning_ignore("unused_parameter")
-func _on_golfball_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	puttable = true
-
-@warning_ignore("unused_parameter")
-func _on_golfball_detection_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	puttable = false
+func _putting_process(delta: float) -> void:
+	pass

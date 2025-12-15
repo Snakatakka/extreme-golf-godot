@@ -1,7 +1,5 @@
 extends Area2D
 
-var mainlevel = 1
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -11,9 +9,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_finish_area_layer_2_body_entered(body: Node2D) -> void:
-	if body.get("TYPE") == "golfball":
-		if mainlevel <= 6:
-			mainlevel + 1
-			get_tree().change_scene_to_file("res://assets/scenes/levels/1/" + str(mainlevel) + ".tscn")
-		elif mainlevel == 6:
+	if body.is_in_group("golfball"):
+		Engine.time_scale = 1
+		if global.mainlevel <= 6:
+			global.mainlevel += 1
+			get_tree().change_scene_to_file("res://assets/scenes/levels/" +str(global.stage) + str(global.mainlevel) + "/.tscn")
+		elif global.mainlevel == 6:
 			get_tree().change_scene_to_file("res://assets/scenes/constants/score/score.tscn")
