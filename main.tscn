@@ -151,17 +151,17 @@ sources/0 = SubResource("TileSetAtlasSource_7mycd")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
 size = Vector2(130, 128)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7mycd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
 radius = 87.5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7mycd"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
 radius = 160.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -195,37 +195,12 @@ script = ExtResource("5_5vw27")
 wait_time = 0.35
 one_shot = true
 
-[node name="golfball" type="RigidBody2D" parent="."]
-position = Vector2(747, 60)
-collision_layer = 4
-collision_mask = 19
-input_pickable = true
-mass = 0.04
-physics_material_override = SubResource("PhysicsMaterial_7mycd")
-script = ExtResource("2_lquwl")
-
-[node name="golfball_collider" type="CollisionShape2D" parent="golfball"]
-position = Vector2(-673, -42)
-shape = SubResource("CircleShape2D_h2yge")
-
-[node name="golfball_sprite" type="Sprite2D" parent="golfball"]
-position = Vector2(-673, -42)
-texture = ExtResource("3_lquwl")
-
-[node name="golfball_detection" type="Area2D" parent="golfball"]
-position = Vector2(-673, -42)
-collision_layer = 4
-collision_mask = 2
-collision_priority = 0.1
-gravity_space_override = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="golfball/golfball_detection"]
-shape = SubResource("CircleShape2D_7mycd")
-one_way_collision_margin = 0.0
-debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("8_5vw27")
 
 [node name="finish_area" type="Area2D" parent="."]
-position = Vector2(752, 54)
+position = Vector2(739, 31)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("5_7mycd")
@@ -237,21 +212,46 @@ collision_mask = 4
 script = ExtResource("5_7mycd")
 
 [node name="finish_collider" type="CollisionShape2D" parent="finish_area/finish_area_layer2"]
-shape = SubResource("RectangleShape2D_272bh")
+shape = SubResource("RectangleShape2D_kek77")
 
 [node name="finish_sprite" type="Sprite2D" parent="finish_area"]
 texture = ExtResource("3_lquwl")
 
 [node name="finish_collider" type="CollisionShape2D" parent="finish_area"]
 scale = Vector2(6.5, 6.5)
-shape = SubResource("RectangleShape2D_272bh")
+shape = SubResource("RectangleShape2D_kek77")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
-script = ExtResource("8_5vw27")
+[node name="golfball" type="RigidBody2D" parent="." groups=["golfball"]]
+position = Vector2(846, 182)
+collision_layer = 4
+collision_mask = 19
+input_pickable = true
+mass = 0.04
+physics_material_override = SubResource("PhysicsMaterial_4c57u")
+script = ExtResource("2_lquwl")
 
+[node name="golfball_collider" type="CollisionShape2D" parent="golfball" groups=["golfball"]]
+position = Vector2(-673, -42)
+shape = SubResource("CircleShape2D_efxa6")
+
+[node name="golfball_sprite" type="Sprite2D" parent="golfball" groups=["golfball"]]
+position = Vector2(-673, -42)
+texture = ExtResource("3_lquwl")
+
+[node name="golfball_detection" type="Area2D" parent="golfball"]
+position = Vector2(-673, -42)
+collision_layer = 4
+collision_mask = 2
+collision_priority = 0.1
+gravity_space_override = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="golfball/golfball_detection"]
+shape = SubResource("CircleShape2D_dg77c")
+one_way_collision_margin = 0.0
+debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
+
+[connection signal="area_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_area_entered"]
+[connection signal="body_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_body_entered"]
 [connection signal="area_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_area_entered"]
 [connection signal="body_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_body_entered"]
 [connection signal="body_exited" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_body_exited"]
-[connection signal="area_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_area_entered"]
-[connection signal="body_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_body_entered"]

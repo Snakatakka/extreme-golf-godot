@@ -23,5 +23,11 @@ func _on_golfball_detection_body_exited(body: Node2D) -> void:
 		pass
 
 
-func _on_finish_area_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_finish_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("golfball"):
+		Engine.time_scale = 1
+		if global.mainlevel <= 6:
+			global.mainlevel += 1
+			get_tree().change_scene_to_file("res://assets/scenes/levels/" +str(global.stage) + "/" +str(global.stage) +str(global.mainlevel) + ".tscn")
+		elif global.mainlevel == 6:
+			get_tree().change_scene_to_file("res://assets/scenes/constants/score/score.tscn")

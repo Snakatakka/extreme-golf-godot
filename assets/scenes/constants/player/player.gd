@@ -11,15 +11,21 @@ var puttable = false
 func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
+	if is_on_floor() and global.jumpsavailable == 0:
+		global.jumpsavailable += 2
+	elif is_on_floor() and global.jumpsavailable == 1:
+		global.jumpsavailable + 1
+	elif is_on_wall_only() and global.jumpsavailable <= 1:
+		global.jumpsavailable += 1
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() || !coyote.is_stopped()):
+	if Input.is_action_just_pressed("jump") and global.jumpsavailable > 0:
+		global.jumpsavailable -= 1
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -29,13 +35,6 @@ func _physics_process(delta: float) -> void:
 		# Coyote Time
 	if was_on_floor && is_on_floor():
 		coyote.start()
-	
-	if global.timescale == 1:
-		SPEED = 1200
-		JUMP_VELOCITY = -700
-	elif global.timescale >= 1:
-		SPEED = SPEED * global.timescale
-		JUMP_VELOCITY = JUMP_VELOCITY * global.timescale
 	
 	move_and_slide()
 
