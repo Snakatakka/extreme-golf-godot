@@ -4,4 +4,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
+	if global.puttingmode:
+		Engine.time_scale = 0.25
+	else:
+		Engine.time_scale = 1
