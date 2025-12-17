@@ -10,13 +10,17 @@ var puttable = false
 
 func _physics_process(delta: float) -> void:
 	
-	# Add the gravity.
+	# Handle Jump Pt.1
 	if is_on_floor() and global.jumpsavailable == 0:
 		global.jumpsavailable += 2
 	elif is_on_floor() and global.jumpsavailable == 1:
 		global.jumpsavailable + 1
 	elif is_on_wall_only() and global.jumpsavailable <= 1:
 		global.jumpsavailable += 1
+
+	# Handle Dash
+	if Input.is_action_just_pressed("dash") and global.dashavailable > 0:
+		global.dashavailable -= 1
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -32,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-		# Coyote Time
+	# Coyote Time
 	if was_on_floor && is_on_floor():
 		coyote.start()
 	

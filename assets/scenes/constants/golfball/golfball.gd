@@ -6,21 +6,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if global.puttingmode == true:
+		print("putting on")
 
 func _on_golfball_detection_body_entered(body: Node2D) -> void:
-	if body.get("TYPE") == "player":
-		global.puttable = true
-		global.timescale == 0.25
-	else:
-		pass
+	if body.is_in_group("player"):
+		global.puttingmode = true
+		print("player detected")
 
 func _on_golfball_detection_body_exited(body: Node2D) -> void:
-	if body.get("TYPE") == "player":
-		global.puttable = false
-		global.timescale == 1
-	else:
-		pass
+	if body.is_in_group("player"):
+		global.puttingmode = false
+		print("player vanished")
 
 
 func _on_finish_area_body_entered(body: Node2D) -> void:

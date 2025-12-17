@@ -171,23 +171,23 @@ position = Vector2(-463, -6)
 tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAAAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_272bh")
 
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(-384, 168)
 collision_layer = 2
 collision_mask = 21
 input_pickable = true
 script = ExtResource("3_272bh")
 
-[node name="player_sprite" type="Sprite2D" parent="player"]
+[node name="player_sprite" type="Sprite2D" parent="player" groups=["player"]]
 texture = ExtResource("3_lquwl")
 
-[node name="player_collider" type="CollisionShape2D" parent="player"]
+[node name="player_collider" type="CollisionShape2D" parent="player" groups=["player"]]
 shape = SubResource("RectangleShape2D_5vw27")
 script = ExtResource("5_5vw27")
 
-[node name="player_area" type="Area2D" parent="player"]
+[node name="player_area" type="Area2D" parent="player" groups=["player"]]
 
-[node name="player_area_collider" type="CollisionShape2D" parent="player/player_area"]
+[node name="player_area_collider" type="CollisionShape2D" parent="player/player_area" groups=["player"]]
 shape = SubResource("RectangleShape2D_5vw27")
 script = ExtResource("5_5vw27")
 
@@ -195,9 +195,9 @@ script = ExtResource("5_5vw27")
 wait_time = 0.35
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
-script = ExtResource("8_5vw27")
+[node name="Dash" type="Timer" parent="player"]
+wait_time = 0.5
+one_shot = true
 
 [node name="finish_area" type="Area2D" parent="."]
 position = Vector2(739, 31)
@@ -249,6 +249,10 @@ gravity_space_override = 1
 shape = SubResource("CircleShape2D_dg77c")
 one_way_collision_margin = 0.0
 debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("8_5vw27")
 
 [connection signal="area_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_area_entered"]
 [connection signal="body_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_body_entered"]
