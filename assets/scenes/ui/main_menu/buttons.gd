@@ -1,6 +1,5 @@
 extends Control
 
-@onready var animation_player: AnimationPlayer = $_anim_player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("res://assets/scenes/levels/" +str(global.stage) + "/" +str(global.stage) +str(global.mainlevel) + ".tscn")

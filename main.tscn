@@ -1,13 +1,14 @@
-[gd_scene load_steps=16 format=4 uid="uid://j7jnrum31v3l"]
+[gd_scene load_steps=17 format=4 uid="uid://j7jnrum31v3l"]
 
 [ext_resource type="Script" uid="uid://c3vvg78341nj5" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bd76wygp3gcc2" path="res://images/floor.png" id="1_h2yge"]
-[ext_resource type="Script" uid="uid://w2erxjvj4ntr" path="res://assets/scenes/constants/golfball/golfball.gd" id="2_lquwl"]
-[ext_resource type="Script" uid="uid://bj82j8alo5uiv" path="res://assets/scenes/constants/player/player.gd" id="3_272bh"]
+[ext_resource type="Script" uid="uid://b803pskseduxi" path="res://assets/scenes/constants/player/putting.gd" id="3_5vw27"]
 [ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://images/icon.svg" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://ik8pffgj3n3f" path="res://assets/scenes/constants/player/player_collider.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://c0yfumaoh31qi" path="res://assets/scenes/constants/finish/finish.gd" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://crpfw02dd24b8" path="res://camera_2d.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://b7xu5wgjj4k0b" path="res://assets/scenes/constants/golfball/win.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://crpfw02dd24b8" path="res://assets/scenes/constants/camera/camera_2d.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://x55y0pj08ifm" path="res://assets/scenes/constants/golfclub/golfclub.gd" id="9_kek77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("1_h2yge")
@@ -174,9 +175,9 @@ tile_set = SubResource("TileSet_272bh")
 [node name="player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(-384, 168)
 collision_layer = 2
-collision_mask = 21
+collision_mask = 17
 input_pickable = true
-script = ExtResource("3_272bh")
+script = ExtResource("3_5vw27")
 
 [node name="player_sprite" type="Sprite2D" parent="player" groups=["player"]]
 texture = ExtResource("3_lquwl")
@@ -222,24 +223,21 @@ scale = Vector2(6.5, 6.5)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="golfball" type="RigidBody2D" parent="." groups=["golfball"]]
-position = Vector2(846, 182)
+position = Vector2(260, 52)
 collision_layer = 4
-collision_mask = 19
+collision_mask = 17
 input_pickable = true
 mass = 0.04
 physics_material_override = SubResource("PhysicsMaterial_4c57u")
-script = ExtResource("2_lquwl")
+script = ExtResource("7_kek77")
 
 [node name="golfball_collider" type="CollisionShape2D" parent="golfball" groups=["golfball"]]
-position = Vector2(-673, -42)
 shape = SubResource("CircleShape2D_efxa6")
 
 [node name="golfball_sprite" type="Sprite2D" parent="golfball" groups=["golfball"]]
-position = Vector2(-673, -42)
 texture = ExtResource("3_lquwl")
 
 [node name="golfball_detection" type="Area2D" parent="golfball"]
-position = Vector2(-673, -42)
 collision_layer = 4
 collision_mask = 2
 collision_priority = 0.1
@@ -250,11 +248,19 @@ shape = SubResource("CircleShape2D_dg77c")
 one_way_collision_margin = 0.0
 debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
 
+[node name="RayCast2D" type="RayCast2D" parent="golfball"]
+target_position = Vector2(335, -8)
+
+[node name="golfclub" type="TouchScreenButton" parent="."]
+script = ExtResource("9_kek77")
+
+[node name="Sprite2D" type="Sprite2D" parent="golfclub"]
+texture = ExtResource("3_lquwl")
+
 [node name="camera" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("8_5vw27")
 
-[connection signal="area_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_area_entered"]
 [connection signal="body_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_body_entered"]
 [connection signal="area_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_area_entered"]
 [connection signal="body_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_body_entered"]
