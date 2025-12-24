@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://images/icon.svg" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://ik8pffgj3n3f" path="res://assets/scenes/constants/player/player_collider.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://c0yfumaoh31qi" path="res://assets/scenes/constants/finish/finish.gd" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://b7xu5wgjj4k0b" path="res://assets/scenes/constants/golfball/win.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://w2erxjvj4ntr" path="res://assets/scenes/constants/golfball/golfball.gd" id="7_kek77"]
 [ext_resource type="Script" uid="uid://crpfw02dd24b8" path="res://assets/scenes/constants/camera/camera_2d.gd" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://x55y0pj08ifm" path="res://assets/scenes/constants/golfclub/golfclub.gd" id="9_kek77"]
 
@@ -155,8 +155,8 @@ size = Vector2(130, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
-friction = 0.0
-bounce = 1.0
+friction = 0.6
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
 radius = 87.5
@@ -223,12 +223,12 @@ scale = Vector2(6.5, 6.5)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="golfball" type="RigidBody2D" parent="." groups=["golfball"]]
-position = Vector2(260, 52)
 collision_layer = 4
 collision_mask = 17
 input_pickable = true
-mass = 0.04
+mass = 0.004
 physics_material_override = SubResource("PhysicsMaterial_4c57u")
+center_of_mass_mode = 1
 script = ExtResource("7_kek77")
 
 [node name="golfball_collider" type="CollisionShape2D" parent="golfball" groups=["golfball"]]
@@ -248,10 +248,11 @@ shape = SubResource("CircleShape2D_dg77c")
 one_way_collision_margin = 0.0
 debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
 
-[node name="RayCast2D" type="RayCast2D" parent="golfball"]
-target_position = Vector2(335, -8)
+[node name="puttingmodetimer" type="Timer" parent="golfball"]
 
 [node name="golfclub" type="TouchScreenButton" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("9_kek77")
 
 [node name="Sprite2D" type="Sprite2D" parent="golfclub"]

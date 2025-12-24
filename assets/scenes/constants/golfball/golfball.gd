@@ -11,7 +11,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("click") and global.puttingmode:
-		apply_central_impulse(Vector2(global.cx / 5,global.cy / 5))
+		apply_central_force(Vector2(global.cx * 5, global.cy * 8))
+		global.puttingmode = false
 
 func _physics_process(delta: float) -> void:
 	pass
