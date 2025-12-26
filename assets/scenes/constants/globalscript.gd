@@ -12,9 +12,11 @@ var puttingmode = false
 
 # Golfball Variables
 var golfballposition = Vector2(0, 0)
-var golfclubposition = Vector2(2, 2)
+var playerposition = Vector2(0, 0)
 
 var bx = 0
 var by = 0
 var cx = 0
 var cy = 0
+var px = 0
+var py = 0

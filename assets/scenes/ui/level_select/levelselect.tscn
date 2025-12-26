@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://f13c2a1ojixc"]
 
-[ext_resource type="Script" uid="uid://g18pbyfneimp" path="res://assets/scenes/ui/levelselect.gd" id="1_gyr0b"]
+[ext_resource type="Script" uid="uid://g18pbyfneimp" path="res://assets/scenes/ui/level_select/levelselect.gd" id="1_gyr0b"]
 [ext_resource type="FontFile" uid="uid://dc8yjysph03vo" path="res://images/vhs-gothic.ttf" id="1_jo6k8"]
 
 [node name="levelselect" type="Control"]

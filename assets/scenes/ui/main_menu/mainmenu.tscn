@@ -19,7 +19,7 @@ pivot_offset = Vector2(-1327, 80)
 size_flags_vertical = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.55, 0.55)
 
 [node name="buttons" type="Control" parent="."]
 layout_mode = 1

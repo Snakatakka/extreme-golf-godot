@@ -155,8 +155,8 @@ size = Vector2(130, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
-friction = 0.6
-bounce = 0.5
+friction = 0.3
+bounce = 0.72
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
 radius = 87.5
@@ -169,11 +169,11 @@ script = ExtResource("1_7mycd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-463, -6)
-tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAAAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAAAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAEAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAEAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAEAAAABAAMAAAAAAAEAAAAFAAIAAAAAAAEAAAAHAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAABAAIAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAACAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAD+/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAD+/wQAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_272bh")
 
 [node name="player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(-384, 168)
+position = Vector2(-734, 13)
 collision_layer = 2
 collision_mask = 17
 input_pickable = true
@@ -201,7 +201,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="finish_area" type="Area2D" parent="."]
-position = Vector2(739, 31)
+position = Vector2(692, 13)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("5_7mycd")
@@ -223,12 +223,14 @@ scale = Vector2(6.5, 6.5)
 shape = SubResource("RectangleShape2D_kek77")
 
 [node name="golfball" type="RigidBody2D" parent="." groups=["golfball"]]
+position = Vector2(-282, 0)
 collision_layer = 4
 collision_mask = 17
 input_pickable = true
-mass = 0.004
+mass = 0.25
 physics_material_override = SubResource("PhysicsMaterial_4c57u")
 center_of_mass_mode = 1
+can_sleep = false
 script = ExtResource("7_kek77")
 
 [node name="golfball_collider" type="CollisionShape2D" parent="golfball" groups=["golfball"]]
@@ -251,6 +253,7 @@ debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
 [node name="puttingmodetimer" type="Timer" parent="golfball"]
 
 [node name="golfclub" type="TouchScreenButton" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("9_kek77")
