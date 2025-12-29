@@ -3,6 +3,7 @@ extends RigidBody2D
 var target = position
 
 @onready var golfball: RigidBody2D = $"golfball"
+@onready var audioplayer: AudioStreamPlayer2D = $audioplayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_released("click") and global.puttingmode:
 		apply_central_impulse(Vector2(global.cx, global.cy))
+		audioplayer.play()
 		global.puttingmode = false
 
 func _physics_process(delta: float) -> void:

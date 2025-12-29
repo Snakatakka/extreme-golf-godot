@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=4 uid="uid://j7jnrum31v3l"]
+[gd_scene load_steps=11 format=4 uid="uid://j7jnrum31v3l"]
 
 [ext_resource type="Script" uid="uid://c3vvg78341nj5" path="res://main.gd" id="1_7mycd"]
-[ext_resource type="Texture2D" uid="uid://bd76wygp3gcc2" path="res://images/floor.png" id="1_h2yge"]
-[ext_resource type="Script" uid="uid://b803pskseduxi" path="res://assets/scenes/constants/player/putting.gd" id="3_5vw27"]
-[ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://images/icon.svg" id="3_lquwl"]
-[ext_resource type="Script" uid="uid://ik8pffgj3n3f" path="res://assets/scenes/constants/player/player_collider.gd" id="5_5vw27"]
-[ext_resource type="Script" uid="uid://c0yfumaoh31qi" path="res://assets/scenes/constants/finish/finish.gd" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://w2erxjvj4ntr" path="res://assets/scenes/constants/golfball/golfball.gd" id="7_kek77"]
-[ext_resource type="Script" uid="uid://crpfw02dd24b8" path="res://assets/scenes/constants/camera/camera_2d.gd" id="8_5vw27"]
-[ext_resource type="Script" uid="uid://x55y0pj08ifm" path="res://assets/scenes/constants/golfclub/golfclub.gd" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://bd76wygp3gcc2" path="res://assets/images/tileset/floor.png" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://b1wqocnm78ncl" path="res://assets/scenes/constants/player/player.tscn" id="3_kek77"]
+[ext_resource type="PackedScene" uid="uid://dds5qsp0sfdtf" path="res://assets/scenes/constants/finish/finish_area.tscn" id="6_4c57u"]
+[ext_resource type="PackedScene" uid="uid://5j0axdy8iirx" path="res://assets/scenes/constants/golfball/golfball.tscn" id="7_4c57u"]
+[ext_resource type="PackedScene" uid="uid://rqxyvr8kg113" path="res://assets/scenes/constants/obstacles/playerobstacles.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://434w7nxnsmn7" path="res://assets/scenes/constants/golfclub/golfclub.tscn" id="8_efxa6"]
+[ext_resource type="PackedScene" uid="uid://b7wk5v2sybch6" path="res://assets/scenes/constants/camera/camera.tscn" id="10_ycdy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("1_h2yge")
@@ -149,21 +148,6 @@ tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(130, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4c57u"]
-friction = 0.3
-bounce = 0.72
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_efxa6"]
-radius = 87.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dg77c"]
-radius = 160.0
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
 
@@ -172,100 +156,19 @@ position = Vector2(-463, -6)
 tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAEAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAEAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAEAAAABAAMAAAAAAAEAAAAFAAIAAAAAAAEAAAAHAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAABAAIAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAACAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAD+/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAD+/wQAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_272bh")
 
-[node name="player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(-734, 13)
-collision_layer = 2
-collision_mask = 17
-input_pickable = true
-script = ExtResource("3_5vw27")
+[node name="player" parent="." instance=ExtResource("3_kek77")]
+position = Vector2(-642, 64)
+collision_mask = 21
 
-[node name="player_sprite" type="Sprite2D" parent="player" groups=["player"]]
-texture = ExtResource("3_lquwl")
+[node name="finish_area" parent="." instance=ExtResource("6_4c57u")]
+position = Vector2(114, 64)
 
-[node name="player_collider" type="CollisionShape2D" parent="player" groups=["player"]]
-shape = SubResource("RectangleShape2D_5vw27")
-script = ExtResource("5_5vw27")
+[node name="golfball" parent="." instance=ExtResource("7_4c57u")]
+position = Vector2(-399, 64)
 
-[node name="player_area" type="Area2D" parent="player" groups=["player"]]
+[node name="golfclub" parent="." instance=ExtResource("8_efxa6")]
 
-[node name="player_area_collider" type="CollisionShape2D" parent="player/player_area" groups=["player"]]
-shape = SubResource("RectangleShape2D_5vw27")
-script = ExtResource("5_5vw27")
+[node name="playerobstacles" parent="." instance=ExtResource("7_5vw27")]
+position = Vector2(-129, 95)
 
-[node name="Coyote" type="Timer" parent="player"]
-wait_time = 0.35
-one_shot = true
-
-[node name="Dash" type="Timer" parent="player"]
-wait_time = 0.5
-one_shot = true
-
-[node name="finish_area" type="Area2D" parent="."]
-position = Vector2(692, 13)
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("5_7mycd")
-
-[node name="finish_area_layer2" type="Area2D" parent="finish_area"]
-scale = Vector2(6.5, 6.5)
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("5_7mycd")
-
-[node name="finish_collider" type="CollisionShape2D" parent="finish_area/finish_area_layer2"]
-shape = SubResource("RectangleShape2D_kek77")
-
-[node name="finish_sprite" type="Sprite2D" parent="finish_area"]
-texture = ExtResource("3_lquwl")
-
-[node name="finish_collider" type="CollisionShape2D" parent="finish_area"]
-scale = Vector2(6.5, 6.5)
-shape = SubResource("RectangleShape2D_kek77")
-
-[node name="golfball" type="RigidBody2D" parent="." groups=["golfball"]]
-position = Vector2(-282, 0)
-collision_layer = 4
-collision_mask = 17
-input_pickable = true
-mass = 0.25
-physics_material_override = SubResource("PhysicsMaterial_4c57u")
-center_of_mass_mode = 1
-can_sleep = false
-script = ExtResource("7_kek77")
-
-[node name="golfball_collider" type="CollisionShape2D" parent="golfball" groups=["golfball"]]
-shape = SubResource("CircleShape2D_efxa6")
-
-[node name="golfball_sprite" type="Sprite2D" parent="golfball" groups=["golfball"]]
-texture = ExtResource("3_lquwl")
-
-[node name="golfball_detection" type="Area2D" parent="golfball"]
-collision_layer = 4
-collision_mask = 2
-collision_priority = 0.1
-gravity_space_override = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="golfball/golfball_detection"]
-shape = SubResource("CircleShape2D_dg77c")
-one_way_collision_margin = 0.0
-debug_color = Color(0.9769748, 0, 0.41136557, 0.41960785)
-
-[node name="puttingmodetimer" type="Timer" parent="golfball"]
-
-[node name="golfclub" type="TouchScreenButton" parent="."]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.2, 0.2)
-script = ExtResource("9_kek77")
-
-[node name="Sprite2D" type="Sprite2D" parent="golfclub"]
-texture = ExtResource("3_lquwl")
-
-[node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
-script = ExtResource("8_5vw27")
-
-[connection signal="body_entered" from="finish_area/finish_area_layer2" to="finish_area" method="_on_finish_area_layer_2_body_entered"]
-[connection signal="area_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_area_entered"]
-[connection signal="body_entered" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_body_entered"]
-[connection signal="body_exited" from="golfball/golfball_detection" to="golfball" method="_on_golfball_detection_body_exited"]
+[node name="camera" parent="." instance=ExtResource("10_ycdy4")]

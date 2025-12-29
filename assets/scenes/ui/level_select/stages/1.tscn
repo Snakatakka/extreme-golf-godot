@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bembjvtapps70"]
+
+[ext_resource type="PackedScene" uid="uid://c2uciujt5fvsm" path="res://assets/scenes/ui/level_select/stageselect/stagenumber.tscn" id="1_mvhul"]
+
+[node name="1" instance=ExtResource("1_mvhul")]
+anchors_preset = -1
+anchor_left = 0.23500001
+anchor_top = 1.0
+anchor_right = 0.72700006
+anchor_bottom = 1.2420001
+offset_left = 0.27996826
+offset_top = 5.0
+offset_right = 0.49591064
+offset_bottom = 0.18395996
+text = "Stage One"
+
+[node name="hovertext" parent="." index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = -1.036
+anchor_right = 0.224
+anchor_bottom = -1.036
+offset_left = -127.008
+offset_top = 157.472
+offset_right = 439.992
+offset_bottom = 309.472
+text = ""
+
+[node name="regulartext" parent="." index="1"]
+scale = Vector2(14.093474, 3.8706336)

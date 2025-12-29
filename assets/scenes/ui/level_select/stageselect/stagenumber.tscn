@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2uciujt5fvsm"]
+
+[ext_resource type="FontFile" uid="uid://d3w3jhg1a0864" path="res://assets/images/monogram.ttf" id="1_3l5jq"]
+
+[sub_resource type="GDScript" id="GDScript_8sl2p"]
+script/source = "extends Button
+
+var hovering = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"click\") and hovering:
+		global.stage = name
+		print((\"changing scene to\" + \"res://assets/scenes/levels/\"+str(global.stage)+\"/\"+str(global.stage)+\"1.tscn\"))
+		get_tree().change_scene_to_file(\"res://assets/scenes/levels/\"+str(global.stage)+\"/\"+str(global.stage)+\"1.tscn\")
+
+func _on_mouse_entered() -> void:
+	hovering = true
+
+func _on_mouse_exited() -> void:
+	hovering = false
+"
+
+[node name="stagenumber" type="Button"]
+process_priority = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = 329.0
+offset_right = 262.0
+offset_bottom = 481.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(283.5, 76)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("1_3l5jq")
+theme_override_font_sizes/font_size = 125
+clip_text = true
+script = SubResource("GDScript_8sl2p")
+
+[node name="hovertext" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 567.0
+offset_bottom = 152.0
+theme_override_fonts/normal_font = ExtResource("1_3l5jq")
+theme_override_font_sizes/normal_font_size = 110
+text = "Stage One"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="regulartext" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

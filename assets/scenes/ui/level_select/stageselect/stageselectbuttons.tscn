@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpxg7c6nckpb3"]
+
+[ext_resource type="PackedScene" uid="uid://c2uciujt5fvsm" path="res://assets/scenes/ui/level_select/stageselect/stagenumber.tscn" id="1_5rt5b"]
+
+[node name="stageselectbuttons" type="Control"]
+layout_mode = 3
+anchor_left = -0.24700001
+anchor_top = 0.53900003
+anchor_bottom = 0.77300006
+offset_left = 284.544
+offset_top = -349.27203
+offset_right = 40.0
+offset_bottom = -460.90405
+
+[node name="stagenumber" parent="." instance=ExtResource("1_5rt5b")]
+layout_mode = 0
+anchors_preset = 0

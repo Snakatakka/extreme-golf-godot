@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bab28yv5f5uyo"]
 
 [ext_resource type="Script" uid="uid://b215mu2l6shp7" path="res://assets/scenes/ui/main_menu/buttons.gd" id="1_56yfp"]
-[ext_resource type="FontFile" uid="uid://dc8yjysph03vo" path="res://images/vhs-gothic.ttf" id="2_w4mmc"]
+[ext_resource type="FontFile" uid="uid://d3w3jhg1a0864" path="res://assets/images/monogram.ttf" id="2_56yfp"]
 
 [sub_resource type="Theme" id="Theme_56yfp"]
 
@@ -37,8 +37,8 @@ offset_top = -60.0
 offset_right = -330.0
 offset_bottom = 92.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_w4mmc")
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("2_56yfp")
+theme_override_font_sizes/font_size = 110
 text = "Level Select"
 clip_text = true
 metadata/_edit_use_anchors_ = true
@@ -52,8 +52,8 @@ offset_right = -330.0
 offset_bottom = 292.0
 theme = SubResource("Theme_56yfp")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_w4mmc")
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("2_56yfp")
+theme_override_font_sizes/font_size = 110
 text = "Options"
 metadata/_edit_use_anchors_ = true
 
@@ -65,8 +65,8 @@ offset_top = 340.0
 offset_right = -330.0
 offset_bottom = 492.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_w4mmc")
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("2_56yfp")
+theme_override_font_sizes/font_size = 110
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 

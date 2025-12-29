@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1wqocnm78ncl"]
+
+[ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://assets/images/icon.svg" id="1_hp8mm"]
+
+[sub_resource type="GDScript" id="GDScript_g7xje"]
+script/source = "extends \"res://assets/scenes/constants/player/player.gd\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func _input(event: InputEvent) -> void:
+	if global.puttingmode and Input.is_action_just_pressed(\"click\"):
+		print(\"holding click while putting\")
+		
+	elif global.puttingmode and Input.is_action_just_released(\"click\"):
+		print(\"released click while putting\")
+	elif not global.puttingmode and Input.is_action_just_pressed(\"click\") or Input.is_action_just_released(\"click\"):
+		print(\"putt unsuccesfull\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(130, 128)
+
+[sub_resource type="GDScript" id="GDScript_ovk5d"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func _process(delta: float) -> void:
+	pass
+
+func _on_golfball_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	# Engine.time_scale = 0.25
+	pass
+
+func _on_golfball_detection_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	# Engine.time_scale = 1
+	pass
+"
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 17
+input_pickable = true
+script = SubResource("GDScript_g7xje")
+
+[node name="playersprite" type="Sprite2D" parent="." groups=["player"]]
+texture = ExtResource("1_hp8mm")
+
+[node name="playercollider" type="CollisionShape2D" parent="." groups=["player"]]
+shape = SubResource("RectangleShape2D_5vw27")
+script = SubResource("GDScript_ovk5d")
+
+[node name="playerarea" type="Area2D" parent="." groups=["player"]]
+
+[node name="player_area_collider" type="CollisionShape2D" parent="playerarea" groups=["player"]]
+shape = SubResource("RectangleShape2D_5vw27")
+script = SubResource("GDScript_ovk5d")
+
+[node name="audiolistener" type="AudioListener2D" parent="."]
+current = true
+
+[node name="Coyote" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true

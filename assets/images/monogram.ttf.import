@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dc8yjysph03vo"
-path="res://.godot/imported/vhs-gothic.ttf-0b7da4ca847d1bcbfa74999ba460d83c.fontdata"
+uid="uid://d3w3jhg1a0864"
+path="res://.godot/imported/monogram.ttf-e5d55b5e369121a8dafeeb230b9fd187.fontdata"
 
 [deps]
 
-source_file="res://images/vhs-gothic.ttf"
-dest_files=["res://.godot/imported/vhs-gothic.ttf-0b7da4ca847d1bcbfa74999ba460d83c.fontdata"]
+source_file="res://assets/images/monogram.ttf"
+dest_files=["res://.godot/imported/monogram.ttf-e5d55b5e369121a8dafeeb230b9fd187.fontdata"]
 
 [params]
 

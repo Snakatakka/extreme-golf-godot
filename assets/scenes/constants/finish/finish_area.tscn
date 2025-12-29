@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dds5qsp0sfdtf"]
+
+[ext_resource type="Script" uid="uid://c0yfumaoh31qi" path="res://assets/scenes/constants/finish/finish.gd" id="1_1vx4t"]
+[ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://assets/images/icon.svg" id="2_mm64r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+
+[node name="finish_area" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_1vx4t")
+
+[node name="finish_area_layer2" type="Area2D" parent="."]
+scale = Vector2(6.5, 6.5)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_1vx4t")
+
+[node name="finish_collider" type="CollisionShape2D" parent="finish_area_layer2"]
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="finish_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_mm64r")
+
+[node name="finish_collider" type="CollisionShape2D" parent="."]
+scale = Vector2(6.5, 6.5)
+shape = SubResource("RectangleShape2D_kek77")
+
+[connection signal="body_entered" from="finish_area_layer2" to="." method="_on_finish_area_layer_2_body_entered"]

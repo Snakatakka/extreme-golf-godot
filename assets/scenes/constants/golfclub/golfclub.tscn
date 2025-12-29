@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://434w7nxnsmn7"]
+
+[ext_resource type="Script" uid="uid://x55y0pj08ifm" path="res://assets/scenes/constants/golfclub/golfclub.gd" id="1_6r7b0"]
+[ext_resource type="Texture2D" uid="uid://d4g1ed0et3i2s" path="res://assets/images/icon.svg" id="2_rd0hj"]
+
+[node name="golfclub" type="TouchScreenButton"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_6r7b0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rd0hj")
