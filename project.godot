@@ -24,7 +24,7 @@ global="*res://assets/scenes/constants/globalscript.gd"
 window/size/initial_position_type=0
 window/size/window_width_override=1920
 window/size/window_height_override=1080
-window/stretch/mode="viewport"
+window/main_scene="uid://j7jnrum31v3l"
 
 [editor_plugins]
 
