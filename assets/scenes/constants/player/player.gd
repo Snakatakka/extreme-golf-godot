@@ -15,9 +15,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle Jump Pt.1
 	if is_on_floor() and global.jumpsavailable == 0:
-		global.jumpsavailable += 2
+		global.jumpsavailable = 2
+		global.walljumpavailable = 1
 	elif is_on_floor() and global.jumpsavailable == 1:
-		global.jumpsavailable += 1
+		global.jumpsavailable = 2
 	elif is_on_wall_only() and global.walljumpavailable >= 1 and global.jumpsavailable <= 1:
 		global.walljumpavailable -= 1
 		global.jumpsavailable += 1

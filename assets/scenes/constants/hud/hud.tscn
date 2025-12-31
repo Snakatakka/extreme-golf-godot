@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8o4daqnetuj"]
+
+[ext_resource type="FontFile" uid="uid://d3w3jhg1a0864" path="res://assets/images/monogram.ttf" id="2_vb87s"]
+[ext_resource type="Script" uid="uid://dt2sdpg3ep8hj" path="res://stopwatch.gd" id="3_5rb1m"]
+[ext_resource type="Script" uid="uid://css52hwxwbtct" path="res://assets/scenes/constants/hud/levelnumber.gd" id="3_vb87s"]
+[ext_resource type="Script" uid="uid://battk4l4eyt23" path="res://assets/scenes/constants/hud/levelname.gd" id="4_5rb1m"]
+
+[node name="hud" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="stopwatch" type="Label" parent="."]
+offset_left = 1392.0
+offset_top = -1032.0
+offset_right = 1864.0
+offset_bottom = -913.0
+theme_override_fonts/font = ExtResource("2_vb87s")
+theme_override_font_sizes/font_size = 150
+text = "0:00:000"
+horizontal_alignment = 2
+script = ExtResource("3_5rb1m")
+
+[node name="levelnumber" type="Label" parent="."]
+offset_left = -1824.0
+offset_top = -1032.0
+offset_right = -1740.0
+offset_bottom = -972.0
+theme_override_fonts/font = ExtResource("2_vb87s")
+theme_override_font_sizes/font_size = 75
+text = "1-1"
+script = ExtResource("3_vb87s")
+
+[node name="levelname" type="Label" parent="."]
+offset_left = -1856.0
+offset_top = -984.0
+offset_right = -1547.0
+offset_bottom = -924.0
+theme_override_fonts/font = ExtResource("2_vb87s")
+theme_override_font_sizes/font_size = 75
+text = "\"FunnyJoke\""
+script = ExtResource("4_5rb1m")

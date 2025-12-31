@@ -11,17 +11,19 @@ config_version=5
 [application]
 
 config/name="extreme golf"
-run/main_scene="uid://f13c2a1ojixc"
+run/main_scene="uid://j7jnrum31v3l"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/images/icon.svg"
 
 [autoload]
 
 global="*res://assets/scenes/constants/globalscript.gd"
+timer="*res://assets/scenes/constants/stopwatch/timer.gd"
 
 [display]
 
-window/size/initial_position_type=0
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/main_scene="uid://j7jnrum31v3l"

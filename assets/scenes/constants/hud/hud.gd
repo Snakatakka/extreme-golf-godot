@@ -1,16 +1,14 @@
-extends Camera2D
+extends CanvasLayer
 
-@onready var camera: Camera2D = $camera
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	if global.puttingmode:
-		# tween.tween_property($camera, "zoom", )
-		return
+		scale = Vector2(0.5 * 0.8, 0.5 * 0.8)
 	else:
-		return
+		scale = Vector2(0.5, 0.5)

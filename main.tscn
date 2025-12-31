@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://j7jnrum31v3l"]
+[gd_scene load_steps=13 format=4 uid="uid://j7jnrum31v3l"]
 
 [ext_resource type="Script" uid="uid://c3vvg78341nj5" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://bd76wygp3gcc2" path="res://assets/images/tileset/floor.png" id="1_h2yge"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://5j0axdy8iirx" path="res://assets/scenes/constants/golfball/golfball.tscn" id="7_4c57u"]
 [ext_resource type="PackedScene" uid="uid://rqxyvr8kg113" path="res://assets/scenes/constants/obstacles/playerobstacles.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://434w7nxnsmn7" path="res://assets/scenes/constants/golfclub/golfclub.tscn" id="8_efxa6"]
+[ext_resource type="PackedScene" uid="uid://k8o4daqnetuj" path="res://assets/scenes/constants/hud/hud.tscn" id="8_kek77"]
+[ext_resource type="Script" uid="uid://crdg3faowoqut" path="res://assets/scenes/constants/hud/hud.gd" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b7wk5v2sybch6" path="res://assets/scenes/constants/camera/camera.tscn" id="10_ycdy4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
 texture = ExtResource("1_h2yge")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -146,15 +148,10 @@ texture_region_size = Vector2i(128, 128)
 [sub_resource type="TileSet" id="TileSet_272bh"]
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_7mycd")
+sources/0 = SubResource("TileSetAtlasSource_5vw27")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(-463, -6)
-tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAEAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAEAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAEAAAABAAMAAAAAAAEAAAAFAAIAAAAAAAEAAAAHAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAABAAIAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAACAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAD+/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAD+/wQAAAAAAAEAAAA=")
-tile_set = SubResource("TileSet_272bh")
 
 [node name="player" parent="." instance=ExtResource("3_kek77")]
 position = Vector2(-642, 64)
@@ -172,3 +169,20 @@ position = Vector2(-399, 64)
 position = Vector2(-129, 95)
 
 [node name="camera" parent="." instance=ExtResource("10_ycdy4")]
+use_parent_material = true
+
+[node name="tiles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAIAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAFAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAADAAQAAAAAAAEAAAACAAQAAAAAAAEAAAABAAQAAAAAAAEAAAAAAAQAAAAAAAEAAAD//wQAAAAAAAEAAAAAAAMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAFAAMAAAAAAAEAAAADAAMAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAEAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAIAAAAAAAEAAAABAAMAAAAAAAEAAAAFAAIAAAAAAAEAAAAHAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAABAAIAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAACAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAD+/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAD+/wQAAAAAAAEAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD5/wEAAAAAAAAAAAD4/wEAAAAAAAAAAAD3/wEAAAAAAAAAAAD9/wQAAAAAAAEAAAD8/wQAAAAAAAEAAAD7/wQAAAAAAAEAAAD6/wQAAAAAAAEAAAD5/wQAAAAAAAEAAAD4/wQAAAAAAAEAAAD3/wQAAAAAAAEAAAD3/wMAAAAAAAEAAAD3/wIAAAAAAAEAAAD4/wIAAAAAAAEAAAD5/wIAAAAAAAEAAAD6/wIAAAAAAAEAAAD7/wIAAAAAAAEAAAD8/wIAAAAAAAEAAAD7/wMAAAAAAAEAAAD6/wMAAAAAAAEAAAD5/wMAAAAAAAEAAAD4/wMAAAAAAAEAAAD8/wMAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_272bh")
+
+[node name="hud" parent="." instance=ExtResource("8_kek77")]
+offset = Vector2(-48, 0)
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, -48, 0)
+script = ExtResource("10_4c57u")
+
+[node name="hud2" parent="." instance=ExtResource("8_kek77")]
+offset = Vector2(-48, 0)
+scale = Vector2(0.4, 0.4)
+transform = Transform2D(0.4, 0, 0, 0.4, -48, 0)
+script = ExtResource("10_4c57u")

@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	global.by = position.y
 	
 	if Input.is_action_just_released("click") and global.puttingmode:
+		global.shots += 1
 		apply_central_impulse(Vector2(global.cx, global.cy))
 		audioplayer.play()
 		global.puttingmode = false
