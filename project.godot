@@ -19,6 +19,7 @@ config/icon="res://assets/images/icon.svg"
 
 global="*res://assets/scenes/constants/globalscript.gd"
 timer="*res://assets/scenes/constants/stopwatch/timer.gd"
+score="*res://assets/scenes/constants/score/score.gd"
 
 [display]
 

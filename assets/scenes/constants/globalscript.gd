@@ -21,17 +21,6 @@ var cy = 0
 var px = 0
 var py = 0
 
-# Score Values
-
-var shots = 0
-var deaths = 0
-
-# Score Bonuses
-
-var timebonus = 100000
-var shotbonus = 100000
-var deathbonus = 100000
-
 # Time Stuff
 
 var time = 0.0
@@ -41,13 +30,25 @@ func _process(delta: float) -> void:
 	if stopped:
 		return
 	time += delta
-	
-	if deaths <= 9:
-		deathbonus = 100000 - (deaths * 10)
-	else:
-		deathbonus = 0
 
-func _reset():
+func _gamereset():
+	# dear future me, please forgive me for my sins...
+	stage = 0
+	mainlevel = 1
+	jumpsavailable = 2
+	dashavailable = 1
+	walljumpavailable = 1
+	puttingmode = false
+	golfballposition = Vector2(0, 0)
+	playerposition = Vector2(0, 0)
+	bx = 0
+	by = 0
+	cx = 0
+	cy = 0
+	px = 0
+	py = 0
+
+func _timerreset():
 	time = 0.0
 
 func _timestring():

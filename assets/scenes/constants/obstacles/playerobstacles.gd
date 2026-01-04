@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		global.deaths += 1
+		score.deaths += 1
 		get_tree().reload_current_scene()

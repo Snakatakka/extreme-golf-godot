@@ -9,6 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if global.puttingmode:
-		scale = Vector2(0.5 * 0.8, 0.5 * 0.8)
+		scale = Vector2(0.5 / 1.2, 0.5 / 1.2)
 	else:
-		scale = Vector2(0.5, 0.5)
+		scale = Vector2(0.5 , 0.5)
